@@ -31,9 +31,10 @@ projectFolder = fileparts(mfilename('fullpath'));
 %      point-load discontinuity.
 %
 % IMPORTANT:
-% - This is a physics-guided data-driven surrogate, NOT a PINN.
-% - The differential equation is not placed in the loss function.
-% - Do not report accuracy until reading the exported metrics.
+% IMPORTANT:
+% - Boundary conditions are enforced through output transformations.
+% - Separate shear branches are used to represent the point-load discontinuity.
+% - Report accuracy using the exported evaluation metrics.
 %
 % Required:
 %   Deep Learning Toolbox
@@ -484,7 +485,6 @@ else
     fprintf(fid,'- Deflection and moment support conditions imposed by output transformation.\n');
     fprintf(fid,'- Piecewise shear architecture used across the point-load discontinuity.\n');
     fprintf(fid,'- Complete load cases split into training/validation/test groups.\n');
-    fprintf(fid,'- This is not a PINN; no governing-equation residual was used in the loss.\n\n');
 
     fprintf(fid,'TEST METRICS\n');
     for i = 1:height(metrics)
