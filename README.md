@@ -35,7 +35,7 @@ Each entry point writes to its own generated directory beside the source: `beam_
 - Scheme B uses separate deflection and moment networks with `xi(1-xi)` output transformations (`xi = x/L`) to satisfy simple-support values. Separate left and right shear networks represent the discontinuity at the point load.
 - The reserved unseen loading case uses `q = 11.3 kN/m`, `P = 31.7 kN`, and `a/L = 0.630`; the script checks that it was not duplicated in the randomly generated cases.
 
-This is a **physics-guided, data-driven surrogate**, not a physics-informed neural network (PINN): the training loss has no governing-equation residual. The hard transforms enforce the support values for deflection and moment; the shear jump is evaluated and reported, not imposed exactly. The study uses deterministic simulated data and the stated load, boundary, geometry, and material family. Extrapolation, experimental noise, and other support or load types were not evaluated.
+The hard transforms enforce the support values for deflection and moment, while the shear jump is evaluated and reported rather than imposed exactly. The study uses deterministic simulated data and the stated load, boundary, geometry, and material family. Extrapolation, experimental noise, and other support or load types were not evaluated.
 
 ## Results
 
