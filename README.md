@@ -2,7 +2,7 @@
 
 MATLAB implementation of a simply supported Euler–Bernoulli beam finite-element model and a physics-guided neural-network surrogate for deflection, bending moment, and shear force. The beam has a full-span uniformly distributed load and one downward point load.
 
-The [project portfolio](docs/Computational_Beam_Project_Portfolio.pdf.pdf) presents the beam model, dataset, neural-network design, prediction results, and training performance.
+The [View the project portfolio](docs/Computational_Beam_Project_Portfolio.pdf) presents the beam model, dataset, neural-network design, prediction results, and training performance.
 
 ## Run
 
@@ -23,7 +23,7 @@ Requires MATLAB with Deep Learning Toolbox (formerly Neural Network Toolbox) for
 | --- | --- |
 | `beam_nn_project_verified.m` | Baseline script: FEM, closed-form validation, mesh convergence, and initial multi-output NN. |
 | `beam_schemeB_main.m` | Final Scheme B function: four response-specific networks and an explicitly reserved unseen case. |
-| `docs/Computational_Beam_Project_Portfolio.pdf.pdf` | Project portfolio: model, dataset, network design, prediction results, and training performance. |
+| `docs/Computational_Beam_Project_Portfolio.pdf` | Project portfolio: model, dataset, network design, prediction results, and training performance. |
 
 Each entry point writes to its own generated directory beside the source: `beam_project_results/` or `beam_project_schemeB_results/`. These directories contain validation or test metrics (`.csv`), figures (`.png`), a text summary, and trained models (`.mat`). In particular, inspect `validation_summary.csv`, `mesh_convergence.csv`, `nn_metrics.csv`, `schemeB_test_metrics.csv`, `schemeB_unseen_metrics.csv`, and `schemeB_constraint_checks.csv`. Scheme B writes `schemeB_vs_baseline.csv` only when it finds baseline metrics.
 
