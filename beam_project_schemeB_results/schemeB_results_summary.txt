@@ -1,0 +1,33 @@
+SCHEME B: PHYSICS-GUIDED BEAM SURROGATE RESULTS
+================================================
+
+METHOD
+- Separate deflection, moment, left-shear, and right-shear networks.
+- Deflection and moment support conditions imposed by output transformation.
+- Piecewise shear architecture used across the point-load discontinuity.
+- Complete load cases split into training/validation/test groups.
+- This is not a PINN; no governing-equation residual was used in the loss.
+
+TEST METRICS
+Deflection: RMSE = 0.013080 mm, R^2 = 0.999915
+Bending moment: RMSE = 0.552811 kN m, R^2 = 0.999559
+Shear force: RMSE = 0.099024 kN, R^2 = 0.999987
+
+RESERVED UNSEEN CASE
+q = 11.300 kN/m, P = 31.700 kN, a/L = 0.630
+Deflection: RMSE = 0.008184 mm, R^2 = 0.999971, relative L2 = 0.246782 %
+Bending moment: RMSE = 0.668925 kN m, R^2 = 0.999443, relative L2 = 1.086163 %
+Shear force: RMSE = 0.061537 kN, R^2 = 0.999997, relative L2 = 0.181741 %
+
+PHYSICAL CONSTRAINTS
+Maximum support deflection residual = 0.000000000000e+00 mm
+Maximum support moment residual = 0.000000000000e+00 kN m
+Predicted shear jump = -31.673492 kN
+Exact shear jump = -31.700000 kN
+Shear jump error = 0.083621 %
+
+TRAINING RECORDS
+Deflection stop reason: Training finished: Met validation criterion; best epoch: 1356
+Moment stop reason: Training finished: Met validation criterion; best epoch: 462
+Left shear stop reason: Training finished: Met validation criterion; best epoch: 2189
+Right shear stop reason: Training finished: Met validation criterion; best epoch: 2339

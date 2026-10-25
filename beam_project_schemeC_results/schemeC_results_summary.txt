@@ -1,0 +1,24 @@
+SCHEME C: SUPERPOSITION-STRUCTURED BEAM SURROGATE
+=================================================
+
+w(x; q, P, a) = q f(x) + P g(x, a); only g is learned (hard support constraint).
+M and V from section equilibrium (statically determinate beam).
+This is not a PINN; no governing-equation residual is used in the loss.
+Superposition check (relative): 9.099e-16
+
+DATA EFFICIENCY (deflection on Scheme B's test cases and reserved case, 3 seeds)
+Scheme C                10 FEM solves: reserved L2 mean 1.1513 % (min 0.4866, max 1.7799), test R^2 mean 0.999334 (min 0.998927)
+Scheme C                20 FEM solves: reserved L2 mean 0.0312 % (min 0.0132, max 0.0478), test R^2 mean 0.999999 (min 0.999998)
+Scheme C                40 FEM solves: reserved L2 mean 0.0092 % (min 0.0070, max 0.0107), test R^2 mean 1.000000 (min 1.000000)
+Scheme C                80 FEM solves: reserved L2 mean 0.0083 % (min 0.0061, max 0.0109), test R^2 mean 1.000000 (min 1.000000)
+Scheme B architecture   10 FEM solves: reserved L2 mean 48.7451 % (min 20.5667, max 84.2867), test R^2 mean 0.025350 (min -1.317364)
+Scheme B architecture   20 FEM solves: reserved L2 mean 10.6199 % (min 8.2009, max 11.9952), test R^2 mean 0.929312 (min 0.908932)
+Scheme B architecture   40 FEM solves: reserved L2 mean 2.9610 % (min 1.6693, max 5.3014), test R^2 mean 0.974705 (min 0.956200)
+Scheme B architecture   80 FEM solves: reserved L2 mean 1.3554 % (min 0.5253, max 2.8161), test R^2 mean 0.998926 (min 0.998540)
+
+RESERVED AND EXTRAPOLATION CASES (Scheme C: 20 positions, seed 1; Scheme B: full model, 350 cases)
+Reserved case (in range): Scheme C deflection L2 = 0.0070 %, Scheme B deflection L2 = 0.2468 %, Scheme B moment L2 = 1.0862 %
+P = 60 kN (above range): Scheme C deflection L2 = 0.0097 %, Scheme B deflection L2 = 5.1431 %, Scheme B moment L2 = 2.5627 %
+q = 20 kN/m, P = 80 kN (above range): Scheme C deflection L2 = 0.0085 %, Scheme B deflection L2 = 12.0097 %, Scheme B moment L2 = 8.1111 %
+a/L = 0.05 (outside position range): Scheme C deflection L2 = 5.1645 %, Scheme B deflection L2 = 4.3779 %, Scheme B moment L2 = 6.4640 %
+a/L = 0.95 (outside position range): Scheme C deflection L2 = 3.1164 %, Scheme B deflection L2 = 2.9691 %, Scheme B moment L2 = 6.7685 %

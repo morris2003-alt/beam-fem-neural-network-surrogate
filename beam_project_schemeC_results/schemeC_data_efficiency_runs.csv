@@ -1,0 +1,25 @@
+Method,FEMSolves,Seed,TestR2_Deflection,TestRMSE_Deflection_mm,ReservedL2_Deflection_percent,StopReason
+Scheme C,10,1,0.999243803486735,0.0391026250427621,1.1873882854387,Training finished: Met validation criterion
+Scheme B architecture,10,1,-1.31736391276912,2.16464009264754,84.2867218398461,Training finished: Met validation criterion
+Scheme C,10,2,0.998927356298681,0.0465710813041991,1.779917062048,Training finished: Met validation criterion
+Scheme B architecture,10,2,0.721388365288157,0.75056481629305,20.5666702433407,Training finished: Met validation criterion
+Scheme C,10,3,0.999829870990568,0.0185471747935174,0.486567092733318,Training finished: Met validation criterion
+Scheme B architecture,10,3,0.672025011403126,0.814345950378443,41.381973193984,Training finished: Met validation criterion
+Scheme C,20,1,0.999999804920922,0.000628049573324738,0.0131671973370232,Training finished: Met validation criterion
+Scheme B architecture,20,1,0.908931977479771,0.429112861321026,11.9952070493113,Training finished: Met validation criterion
+Scheme C,20,2,0.99999813389586,0.00194247982309018,0.0478133871800647,Training finished: Met validation criterion
+Scheme B architecture,20,2,0.929917673119798,0.376437460253874,11.663447869263,Training finished: Met validation criterion
+Scheme C,20,3,0.999998758135593,0.00158462195290193,0.0326277486195669,Training finished: Met validation criterion
+Scheme B architecture,20,3,0.949085327931217,0.320855917749927,8.20090418946465,Training finished: Met validation criterion
+Scheme C,40,1,0.999999960597128,0.000282262068381595,0.00698216285854064,Training finished: Reached maximum number of epochs
+Scheme B architecture,40,1,0.98545993787158,0.171463509795384,5.30135498207918,Training finished: Met validation criterion
+Scheme C,40,2,0.999999950107757,0.000317617989323616,0.0098958903262391,Training finished: Reached maximum number of epochs
+Scheme B architecture,40,2,0.956200261511216,0.297594113832703,1.66927962678767,Training finished: Met validation criterion
+Scheme C,40,3,0.99999993737496,0.000355846408807697,0.0106779117869795,Training finished: Reached maximum number of epochs
+Scheme B architecture,40,3,0.982455113028572,0.188349237154882,1.91251074623749,Training finished: Met validation criterion
+Scheme C,80,1,0.999999971234433,0.000241170980226655,0.0061372886577565,Training finished: Reached maximum number of epochs
+Scheme B architecture,80,1,0.998539804619188,0.0543368006203742,2.81606384676902,Training finished: Met validation criterion
+Scheme C,80,2,0.999999955484669,0.000300015285568145,0.0078633170746596,Training finished: Reached maximum number of epochs
+Scheme B architecture,80,2,0.999178631981116,0.04075280183574,0.525304321829376,Training finished: Met validation criterion
+Scheme C,80,3,0.999999960979159,0.000280890394733002,0.0109286524247486,Training finished: Reached maximum number of epochs
+Scheme B architecture,80,3,0.999060835631638,0.0435772060279186,0.724822619487235,Training finished: Met validation criterion
