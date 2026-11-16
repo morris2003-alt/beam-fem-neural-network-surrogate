@@ -31,6 +31,7 @@
 %   validation_summary.csv
 %   mesh_convergence.csv
 %   nn_metrics.csv
+%   baseline_support_residuals.csv
 %   portfolio_results_summary.txt
 %   publication-ready PNG figures
 %   beam_response_nn_model_verified.mat
@@ -374,6 +375,20 @@ if RUN_NEURAL_NETWORK
         'UnseenRelativeL2_percent'});
 
     writetable(nnMetrics, fullfile(resultsDir,'nn_metrics.csv'));
+
+    % Support residuals of the unconstrained baseline: predicted deflection
+    % and moment at x = 0 and x = L over all load cases (exact value: 0).
+    supportIdx = find(abs(X(1,:)) < 1e-12 | abs(X(1,:)-1) < 1e-12);
+    supportW_mm  = Y(1,supportIdx)*wScale*1e3;
+    supportM_kNm = Y(2,supportIdx)*MScale/1e3;
+    supportTable = table(numel(supportIdx), ...
+        max(abs(supportW_mm)), mean(abs(supportW_mm)), ...
+        max(abs(supportM_kNm)), mean(abs(supportM_kNm)), ...
+        'VariableNames', {'SupportPoints','MaxSupportDeflection_mm', ...
+        'MeanSupportDeflection_mm','MaxSupportMoment_kNm','MeanSupportMoment_kNm'});
+    writetable(supportTable, fullfile(resultsDir,'baseline_support_residuals.csv'));
+    fprintf('Baseline support residuals: max |w| = %.4f mm, max |M| = %.4f kN m\n', ...
+        supportTable.MaxSupportDeflection_mm, supportTable.MaxSupportMoment_kNm);
 
     fprintf('\nNEURAL-NETWORK QUANTITATIVE RESULTS\n');
     fprintf('Training MSE   = %.6e\n',trainMSE);

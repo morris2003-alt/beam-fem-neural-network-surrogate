@@ -14,8 +14,9 @@ before:
 | **Scheme C** | Linear superposition built into the model: the network learns only the deflection influence surface | `beam_schemeC_main.m` |
 
 **Main result.** Using only 20 FEM solves, Scheme C is about 8 times more accurate than the full
-Scheme B trained on 350 load cases (reserved-case deflection error 0.031% vs 0.247%), and it stays
-accurate when the loads are far outside the training range (0.01%), where Scheme B's error grows to 12%.
+Scheme B trained on 350 load cases (reserved-case deflection error 0.031% vs 0.247%). With 40 FEM solves (20 point-load positions), it
+also stays accurate when the loads are far outside the training range (0.01%), where Scheme B's error
+grows to 12%.
 
 The project portfolio is in [docs/Computational_Beam_Project_Portfolio.pdf](docs/Computational_Beam_Project_Portfolio.pdf).
 
