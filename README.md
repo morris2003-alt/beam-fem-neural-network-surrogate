@@ -37,6 +37,48 @@ A note on scope: this load case has a closed-form solution, so the FEM here is a
 rather than something the surrogate replaces in practice. The project is a study of how much
 physical structure a surrogate should contain, and what that structure buys.
 
+## What kind of machine-learning model this is
+
+All three surrogates use the same kind of model: a **fully connected feedforward neural network**,
+also called a **multilayer perceptron (MLP)**, trained by **supervised learning** for **regression**.
+Every network is built with MATLAB's `fitnet` (Deep Learning Toolbox).
+
+- **Supervised:** every training input has a known target, computed by the FEM model.
+- **Regression:** the outputs are continuous quantities (deflection, moment, shear), not classes.
+- **Feedforward:** information passes from the inputs through the hidden layers to the outputs in one
+  direction. There is no recurrence and no memory between samples.
+- **Fully connected:** every neuron in one layer is connected to every neuron in the next layer.
+- **Neurons:** each hidden neuron takes a weighted sum of its inputs plus a bias and passes it through
+  an activation function. The scripts do not set the activation functions, so `fitnet`'s defaults
+  apply: the hyperbolic tangent sigmoid (`tansig`) in the hidden layers and a linear output layer
+  (`purelin`).
+- **Loss and training:** the weights are fitted by minimizing the mean squared error (`mse`) between
+  the network output and the FEM target. Inputs and outputs are scaled to [−1, 1] (`mapminmax`), and
+  training stops early when the error on a separate validation set stops improving.
+
+It is **not** a convolutional network, a recurrent network, a neural operator, or a physics-informed
+neural network (PINN) in the usual sense: the beam equation is never added to the loss. In Scheme B
+and Scheme C the physics enters through the **structure of the model** (output transformations,
+separate networks, and superposition), and each network is still trained only on FEM data with a
+mean-squared-error loss. Each sample is just a few scalars, with no image or sequence structure, so a
+small MLP is sufficient.
+
+### Network details (from the scripts)
+
+ξ = x/L, α = a/L, r = ξ − α.
+
+| | Baseline | Scheme B | Scheme C |
+|---|---|---|---|
+| Script | `beam_nn_project_verified.m` | `beam_schemeB_main.m` | `beam_schemeC_main.m` |
+| Networks | 1 | 4: w, M, V for x < a, V for x ≥ a | 1 per trained model |
+| Inputs | 4: ξ, q/q_scale, P/P_scale, α | 6: ξ, q/q_scale, P/P_scale, α, r, \|r\| | 4: ξ, α, r, \|r\| |
+| Outputs | 3: w, M, V (scaled) | 1 per network | 1: the influence-surface factor N |
+| Hidden layers | 64 – 64 – 32 | w: 64 – 64 – 32; M: 48 – 48 – 24; each V: 32 – 32 | 32 – 32 |
+| Training algorithm | Levenberg–Marquardt (`trainlm`) | Scaled conjugate gradient (`trainscg`) | Scaled conjugate gradient (`trainscg`) |
+| Maximum epochs / validation failures before stopping | 1000 / 25 | 2500 / 80 | 3000 / 100 |
+| Training data | 350 load cases × 41 nodes, split by load case (70 / 15 / 15%) | 350 load cases × 41 nodes, split by load case (70 / 15 / 15%), same seed as the baseline | Unit point-load FEM solutions at nA positions; nA − 1 positions in between for validation |
+| Random seed | 42 | 42 | 1, 2, 3 |
+
 ## Baseline and Scheme B
 
 The baseline is a single network with inputs (x/L, q, P, a/L) and three outputs. Scheme B changes the
